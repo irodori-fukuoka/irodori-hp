@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>irodori - ママと子どもの保健室</title>
+    <!-- Google Fonts for rounded, gentle text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo" onclick="navigateTo('home')">
+                <img src="images/icon_logo.png" alt="irodoriロゴ" class="logo-img">
+                <span>irodori</span>
+            </div>
+            <!-- Hamburger Menu for Mobile -->
+            <button class="menu-toggle" id="menu-toggle" aria-label="メニューを開く">
+                <i data-lucide="menu"></i>
+            </button>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <button class="menu-close" id="menu-close" aria-label="メニューを閉じる">
+                    <i data-lucide="x"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="javascript:void(0)" onclick="navigateTo('home')">トップ</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('activities')">活動内容</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('members')">メンバー紹介</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('recruit')">メンバー募集</a></li>
+                    <li><a href="javascript:void(0)" onclick="navigateTo('contact')">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ページ: ホーム -->
+        <section id="page-home" class="page active">
+            <!-- ヒーローセクション -->
+            <div class="hero">
+                <div class="hero-image" id="hero-bg">
+                    <!-- 白い靄を軽減 -->
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <h2 class="hero-catchphrase">ママがほっとできる、<br>優しい居場所を</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container section">
+                <h1 class="page-title text-center main-title">ママと子どもの保健室<br>irodori</h1>
+                
+                <div class="intro-text text-center">
+                    <p>毎日がんばるママへ。</p>
+                    <p>ここは、頑張りすぎないでいい場所。<br>ちょっと一息ついて、<br>誰かと話せるあなたのための保健室です。</p>
+                </div>
+            </div>
+
+            <!-- ご案内 -->
+            <div class="container section bg-sub border-radius-lg p-lg">
+                <h2 class="section-title text-center">ご案内</h2>
+                <div class="card-grid 2-cols">
+                    <a href="javascript:void(0)" class="nav-card" onclick="navigateTo('activities')">
+                        <div class="nav-card-icon"><i data-lucide="heart-handshake"></i></div>
+                        <h3>活動内容はこちら</h3>
+                        <p>私たちが今やっていること</p>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-card" onclick="navigateTo('members')">
+                        <div class="nav-card-icon"><i data-lucide="users"></i></div>
+                        <h3>メンバー紹介はこちら</h3>
+                        <p>安心の医療者チーム</p>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-card" onclick="navigateTo('recruit')">
+                        <div class="nav-card-icon"><i data-lucide="user-plus"></i></div>
+                        <h3>メンバー募集はこちら</h3>
+                        <p>一緒に活動しませんか</p>
+                    </a>
+                    <a href="javascript:void(0)" class="nav-card" onclick="navigateTo('contact')">
+                        <div class="nav-card-icon"><i data-lucide="mail"></i></div>
+                        <h3>お問い合わせはこちら</h3>
+                        <p>ご相談やご連絡お気軽に</p>
+                    </a>
+                </div>
+
+                <!-- 寄付・サポート -->
+                <div class="mt-lg">
+                    <a href="#" class="support-banner">
+                        <div class="support-content">
+                            <i data-lucide="gift" class="support-icon"></i>
+                            <div>
+                                <h3>寄付・サポートはコチラ</h3>
+                                <p>皆様の温かいご支援が、ママと子どもの居場所づくりに繋がります</p>
+                            </div>
+                        </div>
+                        <div class="support-arrow"><i data-lucide="chevron-right"></i></div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- irodoriについて -->
+            <div class="container section">
+                <h2 class="section-title text-center">irodoriについて</h2>
+                <div class="about-box mb-lg">
+                    <h3>私たちの想い</h3>
+                    <p>子育ては一人で抱え込みがちです。周りに頼れる人がいない、相談先がわからないと感じるママの孤独や不安に寄り添いたいという思いから「irodori」は誕生しました。</p>
+                </div>
+
+                <h3 class="subsection-title text-center mt-lg mb-md">3つの特徴</h3>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-number">1</div>
+                        <div>
+                            <h4>全員医療者</h4>
+                            <p>専門知識を持ったスタッフがサポートするため、医療的な面でも安心感があります。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">2</div>
+                        <div>
+                            <h4>居場所づくり</h4>
+                            <p>ただ話を聞くだけでなく、ママ自身がリラックスし、笑顔になれる居場所を提供します。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-number">3</div>
+                        <div>
+                            <h4>これから育つ場所</h4>
+                            <p>完成された場所ではなく、地域の方や参加するママたちと一緒に育てていくコミュニティです。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 活動紹介 (トップページ用抜粋) -->
+            <div class="container section bg-accent border-radius-lg p-lg mb-lg">
+                <h2 class="section-title text-center">活動紹介</h2>
+                <div class="activity-summary text-center">
+                    <img src="images/activities_bg.jpg" alt="活動イメージ" class="content-img mb-md">
+                    <p class="mb-md">ママ向け講座、irodoriマルシェ、子ども食堂の開催や、各種情報発信を行っております。</p>
+                    <button class="btn btn-primary" onclick="navigateTo('activities')">活動内容を詳しく見る</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ページ: 活動内容 -->
+        <section id="page-activities" class="page">
+            <div class="container">
+                <h1 class="page-title text-center text-main-dark mt-sm mb-sm pt-lg">活動内容</h1>
+            </div>
+            <div class="page-header-img" style="background-image: url('images/activities_cover.png');"></div>
+            
+            <div class="container section" style="padding-top: 0;">
+                <p class="text-center lead">irodoriは「ママがほっとできる居場所」を作るため、様々な取り組みを行っています。</p>
+                
+                <div class="activity-detail mt-lg">
+                    <div class="card mb-lg line-left">
+                        <div class="card-body">
+                            <h2 class="subsection-title"><i data-lucide="book-open"></i> ママ向け講座</h2>
+                            <img src="images/section_lecture.png" alt="ママ向け講座" class="content-img mt-sm mb-md">
+                            <p>月1回 第3木曜日に、北九州市内で開催しています。<br>子育てや心と体のケアについて、医療者の視点を取り入れた講座を行っています。</p>
+                            <ul class="activity-topics mt-sm mb-0 p-md bg-sub border-radius-md" style="list-style-type: none;">
+                                <li style="display: flex; align-items: center; gap: 8px;"><i data-lucide="check-circle-2" style="color: var(--color-main); width: 16px;"></i> 産婦人科医の痛くないお産のおはなし</li>
+                                <li style="display: flex; align-items: center; gap: 8px;"><i data-lucide="check-circle-2" style="color: var(--color-main); width: 16px;"></i> 0歳からの性教育</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card mb-lg line-left">
+                        <div class="card-body">
+                            <h2 class="subsection-title"><i data-lucide="tent"></i> irodoriマルシェ</h2>
+                            <img src="images/section_marche_updated.jpg" alt="irodoriマルシェ" class="content-img mt-sm mb-md">
+                            <p>地域の親子やご家族が気軽に集まれるイベントとして開催しています。<br>ワークショップや体験ブースなどを通して、交流やつながりを大切にした場を提供しています。</p>
+                            <a href="https://www.instagram.com/marche.irodoricafe/" target="_blank" class="inline-link mt-md"><i data-lucide="instagram"></i> irodoriマルシェインスタグラムはこちら</a>
+                        </div>
+                    </div>
+
+                    <div class="card mb-lg line-left">
+                        <div class="card-body">
+                            <h2 class="subsection-title"><i data-lucide="utensils"></i> 子ども食堂</h2>
+                            <img src="images/section_cafeteria.png" alt="子ども食堂" class="content-img mt-sm mb-md">
+                            <p>毎月第4土曜日 11:30〜開催（中尾市民センター）</p>
+                            <p class="mt-sm">子ども食堂の前に、10:30〜学習時間を設けており、<br>子どもたちが安心して集中できる環境づくりも行っています。</p>
+                            <a href="https://www.instagram.com/irodori.fukuoka/" target="_blank" class="inline-link mt-md"><i data-lucide="instagram"></i> 最新の開催情報はこちら</a>
+                        </div>
+                    </div>
+
+                    <div class="card mb-lg line-left">
+                        <div class="card-body">
+                            <h2 class="subsection-title"><i data-lucide="smartphone"></i> 情報発信</h2>
+                            <img src="images/section_info.png" alt="情報発信" class="content-img mt-sm mb-md">
+                            <p>InstagramやLINEを通して、子育てに役立つ情報や活動の様子を発信しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ページ: メンバー紹介 -->
+        <section id="page-members" class="page">
+            <div class="container">
+                <h1 class="page-title text-center text-main-dark mt-sm mb-sm pt-lg">メンバー紹介</h1>
+            </div>
+            <div class="page-header-img" style="background-image: url('images/members_cover.png'); background-position: center top;"></div>
+            
+            <div class="container section" style="padding-top: 0;">
+                <div class="text-center lead mb-lg">
+                    <p>irodoriスタッフは全員が資格を持った医療関係者です。<br>身体のこと、心のこと、どうぞ安心してお話しください。</p>
+                </div>
+
+                <div class="members-grid compact">
+                    <!-- Member 1 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/icon_logo.png" alt="塚本 梓" class="member-icon-img">
+                            <div>
+                                <h3 class="member-name">塚本 梓</h3>
+                                <p class="member-role text-main">代表</p>
+                            </div>
+                        </div>
+                        <p class="member-job">看護師</p>
+                    </div>
+
+                    <!-- Member 2 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/icon_logo.png" alt="樫本 歩" class="member-icon-img">
+                            <div>
+                                <h3 class="member-name">樫本 歩</h3>
+                                <p class="member-role text-main">副代表</p>
+                            </div>
+                        </div>
+                        <p class="member-job">看護師</p>
+                    </div>
+
+                    <!-- Member 3 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/icon_logo.png" alt="網本 頌子" class="member-icon-img">
+                            <div>
+                                <h3 class="member-name">網本 頌子</h3>
+                            </div>
+                        </div>
+                        <p class="member-job">産婦人科医師</p>
+                    </div>
+
+                    <!-- Member 4 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/icon_logo.png" alt="前田 沙也加" class="member-icon-img">
+                            <div>
+                                <h3 class="member-name">前田 沙也加</h3>
+                            </div>
+                        </div>
+                        <p class="member-job">看護師 <br> ベビーマッサージ講師 / カメラマン</p>
+                    </div>
+
+                    <!-- Member 5 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/icon_logo.png" alt="中島 佳奈" class="member-icon-img">
+                            <div>
+                                <h3 class="member-name">中島 佳奈</h3>
+                            </div>
+                        </div>
+                        <p class="member-job">助産師</p>
+                    </div>
+
+                    <!-- Member 6 -->
+                    <div class="member-card profile-card">
+                        <div class="profile-header">
+                            <img src="images/member_imatomi.png" alt="今富 礼華" class="member-icon-img" style="background-color: transparent; border: none; box-shadow: none;">
+                            <div>
+                                <h3 class="member-name">今富 礼華</h3>
+                                <p class="member-role text-main" style="margin-top: 4px; font-size: 0.9rem; font-weight: 700;">看護師 / 保健師 / 性教育アドバイザー</p>
+                            </div>
+                        </div>
+                        <div class="member-desc" style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text);">
+                            <p>外科やICUなどで看護師として働いていましたが、三男出産を機に退職しました。</p>
+                            <p style="margin-top: 8px;">男の子ママになったことをきっかけに性教育を勉強し始め、現在は性教育アドバイザーとして「０歳からの性教育」などママ向け講座を主宰しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ページ: メンバー募集 -->
+        <section id="page-recruit" class="page">
+            <div class="container">
+                <h1 class="page-title text-center text-main-dark mt-sm mb-sm pt-lg">メンバー募集</h1>
+            </div>
+            <div class="page-header-img" style="background-image: url('images/recruit_cover.png'); background-position: center top;"></div>
+            
+            <div class="container section" style="padding-top: 0;">
+                <div class="card border-main mb-lg">
+                    <div class="card-body">
+                        <h2 class="section-title text-center">一緒に活動しませんか？</h2>
+                        <img src="images/recruit_cover.png" alt="活動風景" class="content-img mb-md">
+                        <p>irodoriでは、私たちの想いに共感し、一緒にママと子どものための居場所づくりを進めてくださる仲間を募集しています。</p>
+                    </div>
+                </div>
+
+                <div class="mb-lg">
+                    <h3 class="subsection-title">こんな人を募集しています</h3>
+                    <ul class="check-list mt-md mb-md p-md bg-sub border-radius-lg">
+                        <li><i data-lucide="check"></i> irodoriの想いに共感している方</li>
+                        <li><i data-lucide="check"></i> 人の話を否定せずに温かく聴ける方</li>
+                        <li><i data-lucide="check"></i> 医療者・保育士・助産師などの資格をお持ちの方歓迎</li>
+                        <li><i data-lucide="check"></i> 資格がなくても、ママたちの支えになりたい熱意のある方</li>
+                    </ul>
+                </div>
+
+                <div class="mb-lg">
+                    <h3 class="subsection-title">活動内容</h3>
+                    <p class="mt-sm">イベントの企画・運営サポート、相談対応時のサポート、SNSの発信など、得意なことを活かして関わっていただけます。</p>
+                </div>
+
+                <div class="cta-box text-center mt-lg">
+                    <i data-lucide="heart" class="text-main cta-icon"></i>
+                    <h3>ご応募お待ちしております</h3>
+                    <p class="mb-md">公式LINEまたはInstagramのDM、メールにて「メンバー募集について」とお気軽にご連絡ください。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ページ: お問い合わせ -->
+        <section id="page-contact" class="page">
+            <div class="container">
+                <h1 class="page-title text-center text-main-dark mt-sm mb-sm pt-lg">お問い合わせ</h1>
+            </div>
+            <div class="page-header-img" style="background-image: url('images/contact_cover.png'); background-position: center top;"></div>
+            
+            <div class="container section" style="padding-top: 0;">
+                <div class="text-center mb-lg">
+                    <img src="images/contact_cover.png" alt="安心・相談" class="content-img mb-lg">
+                    <p class="lead">ご相談、イベントへのご参加、各種お問い合わせは<br>下記のお問い合わせフォーム、またはLINE・Instagramより受け付けております。</p>
+                    <p>どんな小さなことでもかまいません。<br>いつでもお気軽にお声がけくださいね。</p>
+                </div>
+
+                <!-- お問い合わせフォーム -->
+                <div class="contact-form-container mb-xl">
+                    <p class="mb-md" style="font-size: 0.95rem;">下記のお問い合わせフォームをご入力ください（<span class="required-badge">必須</span>は必須項目です）。</p>
+                    
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                        <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        
+                        <!-- メールの件名 -->
+                        <input type="hidden" name="subject" value="【irodori HP】新しいお問い合わせが届きました">
+                        
+                        <div class="form-group">
+                            <label for="name">お名前 <span class="required-badge">必須</span></label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="山田 花子" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">メールアドレス <span class="required-badge">必須</span></label>
+                            <div style="flex-grow: 1;">
+                                <input type="email" id="email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
+                                <div class="form-help text-main-dark mt-sm" style="font-size: 0.85rem; font-weight: bold;">※ご入力のメールアドレスへご返信致します。</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">お問い合わせ種別</label>
+                            <select id="category" name="category" class="form-control">
+                                <option value="ご相談">ご相談</option>
+                                <option value="イベント参加について">イベント参加について</option>
+                                <option value="メンバー募集について">メンバー募集について</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">お問い合わせ内容 <span class="required-badge">必須</span></label>
+                            <textarea id="message" name="message" class="form-control" placeholder="できるだけ詳しくご記入ください" required></textarea>
+                        </div>
+
+                        <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
+                            <button type="reset" class="btn" style="background: white; border: 1px solid var(--color-border); color: var(--color-text);">リセット</button>
+                            <button type="submit" class="btn" style="background: #333; color: white;">確認する</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3 class="subsection-title flex-center mb-md mt-lg" style="justify-content: center; font-size: 1.1rem;">各SNS・メールからもお問い合わせ可能です</h3>
+
+                <div class="contact-links card-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <a href="https://line.me/R/ti/p/@631bbgmv?oat_content=url&ts=12271550" target="_blank" class="contact-card border-none">
+                        <img src="images/icon_line2.png" alt="LINE" class="contact-image-icon" style="border-radius: 0;">
+                        <h3>公式LINE</h3>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/irodori.fukuoka/" target="_blank" class="contact-card border-none">
+                        <img src="images/icon_instagram.png" alt="Instagram" class="contact-image-icon" style="border-radius: 0;">
+                        <h3>Instagram</h3>
+                    </a>
+
+                    <a href="mailto:irodori.hokenshitsu@gmail.com" class="contact-card border-none">
+                        <img src="images/icon_mail.svg" alt="Mail" class="contact-image-icon" style="border-radius: 0;">
+                        <h3>Email</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 共通アクション導線 -->
+    <div class="global-actions container section mb-xl text-center">
+        <h3 class="mb-md text-main" style="border-top: 1px solid var(--color-border); padding-top: 32px">Social & Contact</h3>
+        <div class="flex-center gap-md mb-lg social-icons-row">
+            <a href="https://www.instagram.com/irodori.fukuoka/" target="_blank" aria-label="Instagram">
+                <img src="images/icon_instagram.png" alt="Instagram" class="social-img-btn" style="border-radius: 0; box-shadow: none;">
+            </a>
+            <a href="https://line.me/R/ti/p/@631bbgmv?oat_content=url&ts=12271550" target="_blank" aria-label="LINE">
+                <img src="images/icon_line2.png" alt="LINE" class="social-img-btn" style="border-radius: 0; box-shadow: none;">
+            </a>
+            <a href="mailto:irodori.hokenshitsu@gmail.com" aria-label="Email">
+                <img src="images/icon_mail.svg" alt="Mail" class="social-img-btn" style="border-radius: 0; box-shadow: none;">
+            </a>
+        </div>
+        <button class="top-btn" onclick="scrollToTop()">
+            <i data-lucide="arrow-upCircle"></i> トップへ戻る
+        </button>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer bg-main text-white">
+        <div class="container text-center">
+            <div class="footer-logo">
+                <img src="images/icon_logo.png" alt="irodoriロゴ" class="footer-logo-img">
+                <span style="color: white; font-weight: bold; font-size: 1.2rem;">irodori</span>
+            </div>
+            <p class="footer-desc mt-sm">ママと子どもの保健室</p>
+            <p class="copyright mt-lg">&copy; 2026 irodori All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
