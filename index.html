@@ -137,11 +137,21 @@
                 </div>
             </div>
 
+            <!-- お知らせ・スケジュール (カレンダー) -->
+            <div class="container section">
+                <h2 class="section-title text-center">お知らせ・年間スケジュール</h2>
+                <div class="calendar-container mt-md mb-lg" style="text-align: center; background-color: var(--color-sub); padding: 48px 24px; border-radius: var(--radius-lg); border: 2px dashed var(--color-main);">
+                    <!-- ここに次回MTGでGoogleカレンダーのコードを貼り付けます -->
+                    <p style="color: var(--color-main-dark); font-weight: bold; font-size: 1.1rem;"><i data-lucide="calendar"></i> ここにGoogleカレンダーが表示されます</p>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">(次回MTGにて連動設定を行います)</p>
+                </div>
+            </div>
+
             <!-- 活動紹介 (トップページ用抜粋) -->
             <div class="container section bg-accent border-radius-lg p-lg mb-lg">
                 <h2 class="section-title text-center">活動紹介</h2>
                 <div class="activity-summary text-center">
-                    <img src="images/activities_bg.jpg" alt="活動イメージ" class="content-img mb-md">
+                    <img src="images/section_marche_updated.jpg" alt="活動イメージ" class="content-img mb-md">
                     <p class="mb-md">ママ向け講座、irodoriマルシェ、子ども食堂の開催や、各種情報発信を行っております。</p>
                     <button class="btn btn-primary" onclick="navigateTo('activities')">活動内容を詳しく見る</button>
                 </div>
@@ -320,10 +330,50 @@
                     <p class="mt-sm">イベントの企画・運営サポート、相談対応時のサポート、SNSの発信など、得意なことを活かして関わっていただけます。</p>
                 </div>
 
-                <div class="cta-box text-center mt-lg">
+                <div class="cta-box text-center mt-lg mb-lg">
                     <i data-lucide="heart" class="text-main cta-icon"></i>
                     <h3>ご応募お待ちしております</h3>
-                    <p class="mb-md">公式LINEまたはInstagramのDM、メールにて「メンバー募集について」とお気軽にご連絡ください。</p>
+                    <p class="mb-md">下記の専用フォーム、または各種SNSよりお気軽にご連絡ください。</p>
+                </div>
+
+                <!-- メンバー募集専用 お問い合わせフォーム -->
+                <div class="contact-form-container">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                        <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
+                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                        
+                        <!-- メールの件名 -->
+                        <input type="hidden" name="subject" value="【irodori HP】メンバー募集へのご応募・お問い合わせ">
+                        
+                        <div class="form-group">
+                            <label for="recruit-name">お名前 <span class="required-badge">必須</span></label>
+                            <input type="text" id="recruit-name" name="name" class="form-control" placeholder="山田 花子" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="recruit-email">メールアドレス <span class="required-badge">必須</span></label>
+                            <div style="flex-grow: 1;">
+                                <input type="email" id="recruit-email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
+                            </div>
+                        </div>
+
+                        <!-- 募集用にカテゴリを固定（非表示） -->
+                        <div class="form-group" style="display: none;">
+                            <select name="category">
+                                <option value="メンバー募集について" selected>メンバー募集について</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recruit-message">応募の動機・ご質問など <span class="required-badge">必須</span></label>
+                            <textarea id="recruit-message" name="message" class="form-control" placeholder="応募の理由や、得意なこと、ご質問などをご自由にお書きください" required style="min-height: 150px;"></textarea>
+                        </div>
+
+                        <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
+                            <button type="reset" class="btn" style="background: white; border: 1px solid var(--color-border); color: var(--color-text);">リセット</button>
+                            <button type="submit" class="btn" style="background: #333; color: white;">送信する</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
