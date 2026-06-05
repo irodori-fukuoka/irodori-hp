@@ -336,42 +336,65 @@
 
                 <!-- メンバー募集専用 お問い合わせフォーム -->
                 <div class="contact-form-container">
-                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                        <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
-                        <input type="hidden" name="access_key" value="3b02c940-85a8-40bb-a1af-17eb4a535d01">
-                        
-                        <!-- メールの件名 -->
-                        <input type="hidden" name="subject" value="【irodori HP】メンバー募集へのご応募・お問い合わせ">
-                        
-                        <div class="form-group">
-                            <label for="recruit-name">お名前 <span class="required-badge">必須</span></label>
-                            <input type="text" id="recruit-name" name="name" class="form-control" placeholder="山田 花子" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="recruit-email">メールアドレス <span class="required-badge">必須</span></label>
-                            <div style="flex-grow: 1;">
-                                <input type="email" id="recruit-email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
+                    <div id="recruit-form-view">
+                        <form id="recruit-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                            <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
+                            <input type="hidden" name="access_key" value="3b02c940-85a8-40bb-a1af-17eb4a535d01">
+                            
+                            <!-- メールの件名 -->
+                            <input type="hidden" name="subject" value="【irodori HP】メンバー募集へのご応募・お問い合わせ">
+                            
+                            <div class="form-group">
+                                <label for="recruit-name">お名前 <span class="required-badge">必須</span></label>
+                                <input type="text" id="recruit-name" name="name" class="form-control" placeholder="山田 花子" required>
                             </div>
-                        </div>
+                            
+                            <div class="form-group">
+                                <label for="recruit-email">メールアドレス <span class="required-badge">必須</span></label>
+                                <div style="flex-grow: 1;">
+                                    <input type="email" id="recruit-email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
+                                </div>
+                            </div>
 
-                        <!-- 募集用にカテゴリを固定（非表示） -->
-                        <div class="form-group" style="display: none;">
-                            <select name="category">
-                                <option value="メンバー募集について" selected>メンバー募集について</option>
-                            </select>
-                        </div>
+                            <!-- 募集用にカテゴリを固定（非表示） -->
+                            <div class="form-group" style="display: none;">
+                                <select name="category" id="recruit-category">
+                                    <option value="メンバー募集について" selected>メンバー募集について</option>
+                                </select>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="recruit-message">応募の動機・ご質問など <span class="required-badge">必須</span></label>
-                            <textarea id="recruit-message" name="message" class="form-control" placeholder="応募の理由や、得意なこと、ご質問などをご自由にお書きください" required style="min-height: 150px;"></textarea>
-                        </div>
+                            <div class="form-group">
+                                <label for="recruit-message">応募の動機・ご質問など <span class="required-badge">必須</span></label>
+                                <textarea id="recruit-message" name="message" class="form-control" placeholder="応募の理由や、得意なこと、ご質問などをご自由にお書きください" required style="min-height: 150px;"></textarea>
+                            </div>
 
+                            <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
+                                <button type="button" class="btn btn-outline" onclick="document.getElementById('recruit-form').reset()">リセット</button>
+                                <button type="button" class="btn btn-dark" onclick="showConfirm('recruit')">確認する</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 確認画面 -->
+                    <div id="recruit-confirm-view" style="display: none;" class="confirm-view">
+                        <h3 class="mb-md text-center text-main-dark">以下の内容で送信しますか？</h3>
+                        <div class="confirm-item">
+                            <div class="confirm-label">お名前</div>
+                            <div id="confirm-recruit-name" class="confirm-value"></div>
+                        </div>
+                        <div class="confirm-item">
+                            <div class="confirm-label">メールアドレス</div>
+                            <div id="confirm-recruit-email" class="confirm-value"></div>
+                        </div>
+                        <div class="confirm-item">
+                            <div class="confirm-label">応募の動機・ご質問など</div>
+                            <div id="confirm-recruit-message" class="confirm-value"></div>
+                        </div>
                         <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
-                            <button type="reset" class="btn" style="background: white; border: 1px solid var(--color-border); color: var(--color-text);">リセット</button>
-                            <button type="submit" class="btn" style="background: #333; color: white;">送信する</button>
+                            <button type="button" class="btn btn-outline" onclick="hideConfirm('recruit')">戻る</button>
+                            <button type="button" class="btn btn-dark" onclick="submitForm('recruit')">送信する</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -392,48 +415,75 @@
 
                 <!-- お問い合わせフォーム -->
                 <div class="contact-form-container mb-xl">
-                    <p class="mb-md" style="font-size: 0.95rem;">下記のお問い合わせフォームをご入力ください（<span class="required-badge">必須</span>は必須項目です）。</p>
-                    
-                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-                        <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
-                        <input type="hidden" name="access_key" value="3b02c940-85a8-40bb-a1af-17eb4a535d01">
+                    <div id="contact-form-view">
+                        <p class="mb-md" style="font-size: 0.95rem;">下記のお問い合わせフォームをご入力ください（<span class="required-badge">必須</span>は必須項目です）。</p>
                         
-                        <!-- メールの件名 -->
-                        <input type="hidden" name="subject" value="【irodori HP】新しいお問い合わせが届きました">
-                        
-                        <div class="form-group">
-                            <label for="name">お名前 <span class="required-badge">必須</span></label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="山田 花子" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">メールアドレス <span class="required-badge">必須</span></label>
-                            <div style="flex-grow: 1;">
-                                <input type="email" id="email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
-                                <div class="form-help text-main-dark mt-sm" style="font-size: 0.85rem; font-weight: bold;">※ご入力のメールアドレスへご返信致します。</div>
+                        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+                            <!-- Web3Formsのアクセスキー（後ほど取得したものをここに入れます） -->
+                            <input type="hidden" name="access_key" value="3b02c940-85a8-40bb-a1af-17eb4a535d01">
+                            
+                            <!-- メールの件名 -->
+                            <input type="hidden" name="subject" value="【irodori HP】新しいお問い合わせが届きました">
+                            
+                            <div class="form-group">
+                                <label for="name">お名前 <span class="required-badge">必須</span></label>
+                                <input type="text" id="contact-name" name="name" class="form-control" placeholder="山田 花子" required>
                             </div>
-                        </div>
+                            
+                            <div class="form-group">
+                                <label for="email">メールアドレス <span class="required-badge">必須</span></label>
+                                <div style="flex-grow: 1;">
+                                    <input type="email" id="contact-email" name="email" class="form-control" placeholder="mail@example.com" required style="width: 100%;">
+                                    <div class="form-help text-main-dark mt-sm" style="font-size: 0.85rem; font-weight: bold;">※ご入力のメールアドレスへご返信致します。</div>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="category">お問い合わせ種別</label>
-                            <select id="category" name="category" class="form-control">
-                                <option value="ご相談">ご相談</option>
-                                <option value="イベント参加について">イベント参加について</option>
-                                <option value="メンバー募集について">メンバー募集について</option>
-                                <option value="その他">その他</option>
-                            </select>
-                        </div>
+                            <div class="form-group">
+                                <label for="category">お問い合わせ種別</label>
+                                <select id="contact-category" name="category" class="form-control">
+                                    <option value="ご相談">ご相談</option>
+                                    <option value="イベント参加について">イベント参加について</option>
+                                    <option value="メンバー募集について">メンバー募集について</option>
+                                    <option value="その他">その他</option>
+                                </select>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="message">お問い合わせ内容 <span class="required-badge">必須</span></label>
-                            <textarea id="message" name="message" class="form-control" placeholder="できるだけ詳しくご記入ください" required></textarea>
-                        </div>
+                            <div class="form-group">
+                                <label for="message">お問い合わせ内容 <span class="required-badge">必須</span></label>
+                                <textarea id="contact-message" name="message" class="form-control" placeholder="できるだけ詳しくご記入ください" required></textarea>
+                            </div>
 
+                            <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
+                                <button type="button" class="btn btn-outline" onclick="document.getElementById('contact-form').reset()">リセット</button>
+                                <button type="button" class="btn btn-dark" onclick="showConfirm('contact')">確認する</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- 確認画面 -->
+                    <div id="contact-confirm-view" style="display: none;" class="confirm-view">
+                        <h3 class="mb-md text-center text-main-dark">以下の内容で送信しますか？</h3>
+                        <div class="confirm-item">
+                            <div class="confirm-label">お名前</div>
+                            <div id="confirm-contact-name" class="confirm-value"></div>
+                        </div>
+                        <div class="confirm-item">
+                            <div class="confirm-label">メールアドレス</div>
+                            <div id="confirm-contact-email" class="confirm-value"></div>
+                        </div>
+                        <div class="confirm-item">
+                            <div class="confirm-label">お問い合わせ種別</div>
+                            <div id="confirm-contact-category" class="confirm-value"></div>
+                        </div>
+                        <div class="confirm-item">
+                            <div class="confirm-label">お問い合わせ内容</div>
+                            <div id="confirm-contact-message" class="confirm-value"></div>
+                        </div>
                         <div class="text-center mt-lg" style="display: flex; justify-content: center; gap: 16px;">
-                            <button type="reset" class="btn" style="background: white; border: 1px solid var(--color-border); color: var(--color-text);">リセット</button>
-                            <button type="submit" class="btn" style="background: #333; color: white;">確認する</button>
+                            <button type="button" class="btn btn-outline" onclick="hideConfirm('contact')">戻る</button>
+                            <button type="button" class="btn btn-dark" onclick="submitForm('contact')">送信する</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
                 <h3 class="subsection-title flex-center mb-md mt-lg" style="justify-content: center; font-size: 1.1rem;">各SNS・メールからもお問い合わせ可能です</h3>

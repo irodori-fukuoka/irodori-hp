@@ -96,6 +96,8 @@ main { padding-top: var(--header-height); min-height: calc(100vh - var(--header-
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: var(--radius-full); font-weight: 700; transition: all 0.3s ease; box-shadow: var(--shadow-sm); }
 .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); opacity: 0.9; }
 .btn-primary { background-color: var(--color-main); color: white; }
+.btn-outline { background: white; border: 1px solid var(--color-border); color: var(--color-text); }
+.btn-dark { background-color: #333; color: white; }
 
 .card-grid { display: grid; gap: var(--spacing-md); }
 .card-grid.2-cols { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
@@ -308,6 +310,30 @@ textarea.form-control {
     .contact-form-container {
         padding: var(--spacing-xl);
     }
+}
+
+/* Confirm View */
+.confirm-view {
+    animation: fadeIn 0.4s ease;
+}
+.confirm-item {
+    margin-bottom: var(--spacing-md);
+    background-color: var(--color-sub);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+.confirm-label {
+    font-weight: 700;
+    color: var(--color-main-dark);
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+.confirm-value {
+    font-size: 1rem;
+    color: var(--color-text);
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 /* Media Queries (for PC/Tablet) */

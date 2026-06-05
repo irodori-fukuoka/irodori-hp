@@ -60,3 +60,39 @@ window.addEventListener('scroll', () => {
         header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
     }
 });
+
+// Form Confirmation Logic
+function showConfirm(formType) {
+    const form = document.getElementById(formType + '-form');
+    
+    // HTML5 Validation
+    if (!form.reportValidity()) {
+        return;
+    }
+
+    // Map inputs to confirm view
+    if (formType === 'recruit') {
+        document.getElementById('confirm-recruit-name').textContent = document.getElementById('recruit-name').value;
+        document.getElementById('confirm-recruit-email').textContent = document.getElementById('recruit-email').value;
+        document.getElementById('confirm-recruit-message').textContent = document.getElementById('recruit-message').value;
+    } else if (formType === 'contact') {
+        document.getElementById('confirm-contact-name').textContent = document.getElementById('contact-name').value;
+        document.getElementById('confirm-contact-email').textContent = document.getElementById('contact-email').value;
+        document.getElementById('confirm-contact-category').textContent = document.getElementById('contact-category').value;
+        document.getElementById('confirm-contact-message').textContent = document.getElementById('contact-message').value;
+    }
+
+    // Hide form, show confirm
+    document.getElementById(formType + '-form-view').style.display = 'none';
+    document.getElementById(formType + '-confirm-view').style.display = 'block';
+}
+
+function hideConfirm(formType) {
+    document.getElementById(formType + '-form-view').style.display = 'block';
+    document.getElementById(formType + '-confirm-view').style.display = 'none';
+}
+
+function submitForm(formType) {
+    const form = document.getElementById(formType + '-form');
+    form.submit();
+}
