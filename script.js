@@ -96,3 +96,135 @@ function submitForm(formType) {
     const form = document.getElementById(formType + '-form');
     form.submit();
 }
+
+// Custom Calendar Logic
+let allEvents = [];
+let currentCalDate = new Date(); // Date used for rendering calendar grid
+
+// Fetch events from Vercel API
+async function fetchEvents() {
+    try {
+        const res = await fetch('/api/events');
+        if (!res.ok) throw new Error('API Error');
+        const data = await res.json();
+        allEvents = data;
+        renderEventList();
+        renderCalendar();
+    } catch (err) {
+        console.error(err);
+        document.getElementById('custom-event-list').innerHTML = '<div class="text-center p-md" style="color: #ff7676;">予定の取得に失敗しました。</div>';
+    }
+}
+
+function getEventImage(title) {
+    if (title.includes('食堂')) return './images/thumbnail_cafeteria_1780984186941.png';
+    if (title.includes('講座') || title.includes('教室')) return './images/thumbnail_lecture_1780984200662.png';
+    if (title.includes('お話会') || title.includes('おはなし')) return './images/thumbnail_talk_1780984211936.png';
+    if (title.includes('イベント') || title.includes('祭り') || title.includes('マルシェ') || title.includes('講演') || title.includes('コラボ')) return './images/thumbnail_event_1780984231383.png';
+    return './images/thumbnail_other_1780984242886.png'; // その他
+}
+
+function renderEventList() {
+    const listEl = document.getElementById('custom-event-list');
+    listEl.innerHTML = '';
+    
+    // Sort events (only future/today)
+    const now = new Date();
+    const todayStr = now.getFullYear() + String(now.getMonth()+1).padStart(2, '0') + String(now.getDate()).padStart(2, '0');
+    
+    const upcoming = allEvents.filter(e => {
+        return e.start.substring(0,8) >= todayStr;
+    });
+
+    if (upcoming.length === 0) {
+        listEl.innerHTML = '<div class="text-center p-md" style="color: var(--color-text-light);">現在予定されているイベントはありません。</div>';
+        return;
+    }
+
+    upcoming.forEach(e => {
+        const item = document.createElement('div');
+        item.className = 'event-item';
+        
+        const imgSrc = getEventImage(e.title);
+        
+        let dateDisplay = e.start;
+        if (e.start.length >= 8) {
+            const y = e.start.substring(0,4);
+            const m = parseInt(e.start.substring(4,6));
+            const d = parseInt(e.start.substring(6,8));
+            dateDisplay = `${y}年${m}月${d}日`;
+        }
+
+        item.innerHTML = `
+            <img src="${imgSrc}" class="event-img" alt="イベント画像">
+            <div class="event-info">
+                <div class="event-date">${dateDisplay}</div>
+                <div class="event-title"><i data-lucide="chevron-right-circle"></i> ${e.title}</div>
+            </div>
+        `;
+        listEl.appendChild(item);
+    });
+    lucide.createIcons();
+}
+
+function renderCalendar() {
+    const year = currentCalDate.getFullYear();
+    const month = currentCalDate.getMonth(); // 0-indexed
+    
+    document.getElementById('cal-month-title').textContent = `${year}年${month + 1}月`;
+    
+    const cellsEl = document.getElementById('custom-calendar-cells');
+    cellsEl.innerHTML = '';
+    
+    // Get days in month
+    const firstDay = new Date(year, month, 1).getDay(); // 0=Sun, 6=Sat
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    // Fill empty cells before 1st
+    for (let i = 0; i < firstDay; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell empty';
+        cellsEl.appendChild(cell);
+    }
+    
+    // Create cells for days
+    for (let day = 1; day <= daysInMonth; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        cell.textContent = day;
+        
+        // Check if has event
+        const mStr = String(month+1).padStart(2, '0');
+        const dStr = String(day).padStart(2, '0');
+        const dateStr = `${year}${mStr}${dStr}`;
+        
+        const dayEvents = allEvents.filter(e => e.start.startsWith(dateStr));
+        if (dayEvents.length > 0) {
+            cell.classList.add('has-event');
+            cell.title = dayEvents.map(e => e.title).join('\n');
+        }
+        
+        cellsEl.appendChild(cell);
+    }
+}
+
+// Navigation Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const prevBtn = document.getElementById('cal-prev');
+    const nextBtn = document.getElementById('cal-next');
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentCalDate.setMonth(currentCalDate.getMonth() - 1);
+            renderCalendar();
+        });
+        nextBtn.addEventListener('click', () => {
+            currentCalDate.setMonth(currentCalDate.getMonth() + 1);
+            renderCalendar();
+        });
+    }
+
+    // Initialize calendar fetch if element exists
+    if (document.getElementById('custom-event-list')) {
+        fetchEvents();
+    }
+});
