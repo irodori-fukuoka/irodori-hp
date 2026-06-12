@@ -450,6 +450,9 @@ textarea.form-control {
     text-align: center;
     font-weight: 700;
     font-size: 0.95rem;
+    background-color: var(--color-accent);
+    padding: 8px 0;
+    border-radius: 8px;
 }
 .calendar-grid-cells {
     display: grid;
