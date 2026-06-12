@@ -450,9 +450,7 @@ textarea.form-control {
     text-align: center;
     font-weight: 700;
     font-size: 0.95rem;
-    background-color: var(--color-accent);
     padding: 8px 0;
-    border-radius: 8px;
 }
 .calendar-grid-cells {
     display: grid;
@@ -544,15 +542,18 @@ textarea.form-control {
   .nav-list a:hover { color: var(--color-main-dark); }
   
   .custom-calendar-layout {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
       align-items: flex-start;
+      gap: var(--spacing-xl);
   }
   .event-list-container {
-      flex: 1;
+      flex: none;
+      width: auto;
   }
   .calendar-widget-container {
-      width: 350px;
-      flex-shrink: 0;
+      width: auto;
+      flex-shrink: 1;
   }
   
   .news-item {
