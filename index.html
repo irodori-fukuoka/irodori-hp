@@ -62,6 +62,65 @@
                 </div>
             </div>
 
+            <!-- お知らせ -->
+            <div class="container section">
+                <h2 class="section-title text-center">お知らせ</h2>
+                <div class="news-list-container bg-sub p-md border-radius-lg border-main">
+                    <!-- 現在は空のメッセージ -->
+                    <div class="text-center p-md" style="color: var(--color-text-light);">
+                        現在、新しいお知らせはありません。
+                    </div>
+                    
+                    <!-- 
+                    将来的に記事が追加された場合の表示イメージ（<a>タグで詳細へ飛べるようにします）
+                    <a href="#" class="news-item">
+                        <div class="news-date">2026.06.10</div>
+                        <div class="news-title">7月のirodoriマルシェ出店者募集のお知らせ</div>
+                        <i data-lucide="chevron-right" class="news-arrow"></i>
+                    </a>
+                    -->
+                </div>
+            </div>
+
+            <!-- イベント情報 (カレンダー) -->
+            <div class="container section">
+                <h2 class="section-title text-center">イベント情報</h2>
+                <div class="custom-calendar-layout mt-md">
+                    <!-- 左側：イベントリスト -->
+                    <div class="event-list-container">
+                        <div id="custom-event-list" class="event-list-content">
+                            <!-- JSでイベントがここに入ります -->
+                            <div class="text-center p-md" style="color: var(--color-text-light);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-2 spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> 予定を読み込み中...
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右側：カレンダー -->
+                    <div class="calendar-widget-container">
+                        <div class="calendar-widget-content bg-sub p-md border-radius-lg border-main">
+                            <div class="calendar-nav flex-center mb-md" style="justify-content: space-between;">
+                                <button id="cal-prev" class="cal-nav-btn btn btn-outline" style="padding: 4px 12px; font-size: 0.9rem;">&laquo; 前月</button>
+                                <div id="cal-month-title" class="cal-month-title text-main-dark font-weight-bold" style="font-size: 1.1rem; font-weight: 700;">2026年6月</div>
+                                <button id="cal-next" class="cal-nav-btn btn btn-outline" style="padding: 4px 12px; font-size: 0.9rem;">次月 &raquo;</button>
+                            </div>
+                            <div class="calendar-grid">
+                                <div class="cal-day-header" style="color: #ff7676;">日</div>
+                                <div class="cal-day-header">月</div>
+                                <div class="cal-day-header">火</div>
+                                <div class="cal-day-header">水</div>
+                                <div class="cal-day-header">木</div>
+                                <div class="cal-day-header">金</div>
+                                <div class="cal-day-header" style="color: #6495ED;">土</div>
+                            </div>
+                            <div id="custom-calendar-cells" class="calendar-grid-cells">
+                                <!-- JSで日付セルがここに入ります -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ご案内 -->
             <div class="container section bg-sub border-radius-lg p-lg">
                 <h2 class="section-title text-center">ご案内</h2>
@@ -134,63 +193,6 @@
                             <p>完成された場所ではなく、地域の方や参加するママたちと一緒に育てていくコミュニティです。</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- お知らせ・スケジュール (カレンダー) -->
-            <div class="container section">
-                <h2 class="section-title text-center">お知らせ・スケジュール</h2>
-                <div class="custom-calendar-layout mt-md">
-                    <!-- 左側：イベントリスト -->
-                    <div class="event-list-container">
-                        <div class="event-list-header flex-center gap-sm mb-md">
-                            <i data-lucide="party-popper" style="color: var(--color-main);"></i>
-                            <h3 class="text-main-dark mb-0" style="font-size: 1.3rem;">イベント情報</h3>
-                        </div>
-                        <div id="custom-event-list" class="event-list-content">
-                            <!-- JSでイベントがここに入ります -->
-                            <div class="text-center p-md" style="color: var(--color-text-light);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-loader-2 spin-icon"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> 予定を読み込み中...
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 右側：カレンダー -->
-                    <div class="calendar-widget-container">
-                        <div class="calendar-widget-header flex-center gap-sm mb-md">
-                            <i data-lucide="calendar" style="color: var(--color-main);"></i>
-                            <h3 class="text-main-dark mb-0" style="font-size: 1.3rem;">イベントカレンダー</h3>
-                        </div>
-                        <div class="calendar-widget-content bg-sub p-md border-radius-lg border-main">
-                            <div class="calendar-nav flex-center mb-md" style="justify-content: space-between;">
-                                <button id="cal-prev" class="cal-nav-btn btn btn-outline" style="padding: 4px 12px; font-size: 0.9rem;">&laquo; 前月</button>
-                                <div id="cal-month-title" class="cal-month-title text-main-dark font-weight-bold" style="font-size: 1.1rem; font-weight: 700;">2026年6月</div>
-                                <button id="cal-next" class="cal-nav-btn btn btn-outline" style="padding: 4px 12px; font-size: 0.9rem;">次月 &raquo;</button>
-                            </div>
-                            <div class="calendar-grid">
-                                <div class="cal-day-header" style="color: #ff7676;">日</div>
-                                <div class="cal-day-header">月</div>
-                                <div class="cal-day-header">火</div>
-                                <div class="cal-day-header">水</div>
-                                <div class="cal-day-header">木</div>
-                                <div class="cal-day-header">金</div>
-                                <div class="cal-day-header" style="color: #6495ED;">土</div>
-                            </div>
-                            <div id="custom-calendar-cells" class="calendar-grid-cells">
-                                <!-- JSで日付セルがここに入ります -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 活動紹介 (トップページ用抜粋) -->
-            <div class="container section bg-accent border-radius-lg p-lg mb-lg">
-                <h2 class="section-title text-center">活動紹介</h2>
-                <div class="activity-summary text-center">
-                    <img src="images/section_marche_updated.jpg" alt="活動イメージ" class="content-img mb-md">
-                    <p class="mb-md">ママ向け講座、irodoriマルシェ、子ども食堂の開催や、各種情報発信を行っております。</p>
-                    <button class="btn btn-primary" onclick="navigateTo('activities')">活動内容を詳しく見る</button>
                 </div>
             </div>
         </section>
