@@ -340,7 +340,7 @@ textarea.form-control {
 .custom-calendar-layout {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
 }
 
 .event-list-content {
@@ -369,7 +369,7 @@ textarea.form-control {
     display: flex;
     gap: var(--spacing-md);
     padding: var(--spacing-md) 0;
-    border-bottom: 1px dashed var(--color-main);
+    border-bottom: 1px dotted var(--color-main);
     align-items: center;
 }
 .event-item:last-child {
@@ -377,8 +377,8 @@ textarea.form-control {
 }
 
 .event-img {
-    width: 120px;
-    height: 80px;
+    width: 140px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
@@ -389,38 +389,67 @@ textarea.form-control {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 }
 
 .event-date {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--color-text-light);
     font-weight: 500;
 }
 
 .event-title {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-main-dark);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 .event-title i {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     color: var(--color-main);
 }
 
 /* Calendar Widget Grid */
+.calendar-widget-content {
+    background-color: var(--color-base);
+    border: 2px solid var(--color-main);
+    border-radius: 24px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.cal-nav-btn {
+    background-color: var(--color-base);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+.cal-nav-btn:hover {
+    background-color: var(--color-sub);
+    border-color: var(--color-main);
+}
+
+.cal-month-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-main-dark);
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 4px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     text-align: center;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 .calendar-grid-cells {
     display: grid;
