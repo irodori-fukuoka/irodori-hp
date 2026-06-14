@@ -425,8 +425,9 @@ textarea.form-control {
     background-color: var(--color-base);
     border: 1px solid var(--color-border);
     border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 0.9rem;
+    padding: 4px 24px;
+    font-size: 1.8rem;
+    line-height: 1;
     font-weight: 500;
     color: var(--color-text);
     transition: all 0.2s ease;
