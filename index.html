@@ -62,23 +62,54 @@
                 </div>
             </div>
 
-            <!-- お知らせ -->
-            <div class="container section">
-                <h2 class="section-title text-center">お知らせ</h2>
-                <div class="news-list-container bg-sub p-md border-radius-lg border-main">
-                    <!-- 現在は空のメッセージ -->
-                    <div class="text-center p-md" style="color: var(--color-text-light);">
-                        現在、新しいお知らせはありません。
-                    </div>
+            <!-- お知らせ (noteブログ) -->
+            <div class="container section" id="news-section">
+                <div class="flex-center mb-md" style="gap: 12px;">
+                    <h2 class="section-title text-center" style="margin-bottom: 0;">お知らせ</h2>
+                    <span style="background-color: #41c9b4; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(65,201,180,0.3);">note</span>
+                </div>
+                
+                <div class="blog-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
                     
-                    <!-- 
-                    将来的に記事が追加された場合の表示イメージ（<a>タグで詳細へ飛べるようにします）
-                    <a href="#" class="news-item">
-                        <div class="news-date">2026.06.10</div>
-                        <div class="news-title">7月のirodoriマルシェ出店者募集のお知らせ</div>
-                        <i data-lucide="chevron-right" class="news-arrow"></i>
+                    <!-- Dummy Article 1 -->
+                    <a href="javascript:void(0)" class="blog-card" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;">
+                        <div class="blog-img-wrapper" style="width: 100%; aspect-ratio: 16/9; background-color: #fcf8ec; overflow: hidden;">
+                            <img src="images/members_cover.png" alt="ブログ画像" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="blog-content" style="padding: 16px;">
+                            <div class="blog-date" style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">2026.06.20</div>
+                            <h3 class="blog-title" style="font-size: 1.05rem; color: var(--color-text); margin-bottom: 0; line-height: 1.5; font-weight: 700;">【ダミー】noteでブログを始めました！irodoriの日常をお届けします♪</h3>
+                        </div>
                     </a>
-                    -->
+
+                    <!-- Dummy Article 2 -->
+                    <a href="javascript:void(0)" class="blog-card" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;">
+                        <div class="blog-img-wrapper" style="width: 100%; aspect-ratio: 16/9; background-color: #fcf8ec; overflow: hidden;">
+                            <img src="images/hero_img.png" alt="ブログ画像" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="blog-content" style="padding: 16px;">
+                            <div class="blog-date" style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">2026.06.15</div>
+                            <h3 class="blog-title" style="font-size: 1.05rem; color: var(--color-text); margin-bottom: 0; line-height: 1.5; font-weight: 700;">【ダミー】ママと子どもの保健室、今月のイベント振り返りレポート✨</h3>
+                        </div>
+                    </a>
+
+                    <!-- Dummy Article 3 -->
+                    <a href="javascript:void(0)" class="blog-card" style="display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;">
+                        <div class="blog-img-wrapper" style="width: 100%; aspect-ratio: 16/9; background-color: #fcf8ec; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #e0d5b5;">
+                            <i data-lucide="image" style="width: 48px; height: 48px;"></i>
+                        </div>
+                        <div class="blog-content" style="padding: 16px;">
+                            <div class="blog-date" style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">2026.06.10</div>
+                            <h3 class="blog-title" style="font-size: 1.05rem; color: var(--color-text); margin-bottom: 0; line-height: 1.5; font-weight: 700;">【ダミー】子育てのお悩み相談：助産師からのちょっとしたアドバイス</h3>
+                        </div>
+                    </a>
+
+                </div>
+                
+                <div class="text-center mt-lg">
+                    <a href="javascript:void(0)" class="btn btn-outline" style="border-color: #41c9b4; color: #41c9b4; padding: 12px 32px; font-weight: bold; border-radius: 30px; display: inline-flex; align-items: center; gap: 6px;">
+                        noteで記事をもっと見る <i data-lucide="external-link" style="width: 18px; height: 18px;"></i>
+                    </a>
                 </div>
             </div>
 
