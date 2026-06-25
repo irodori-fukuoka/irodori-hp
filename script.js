@@ -227,4 +227,70 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('custom-event-list')) {
         fetchEvents();
     }
+    
+    // Fetch Note articles
+    if (document.getElementById('note-blog-grid')) {
+        fetchNoteArticles();
+    }
 });
+
+// Fetch Note Articles
+async function fetchNoteArticles() {
+    const noteId = 'irodori_fukuoka';
+    const rssUrl = `https://note.com/${noteId}/rss`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    
+    try {
+        const res = await fetch(apiUrl);
+        if (!res.ok) throw new Error('Note API Error');
+        const data = await res.json();
+        
+        const gridEl = document.getElementById('note-blog-grid');
+        if (!gridEl) return;
+        
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+            gridEl.innerHTML = ''; // Clear dummy content
+            
+            // Render up to 3 articles
+            const items = data.items.slice(0, 3);
+            items.forEach(item => {
+                // Extract image (Note RSS usually provides thumbnail)
+                let imgSrc = item.thumbnail || 'images/members_cover.png';
+                
+                // Format date (YYYY.MM.DD)
+                const d = new Date(item.pubDate);
+                const dateStr = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+                
+                const card = document.createElement('a');
+                card.href = item.link;
+                card.target = '_blank';
+                card.rel = 'noopener';
+                card.className = 'blog-card';
+                card.style.cssText = 'display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;';
+                
+                card.innerHTML = `
+                    <div class="blog-img-wrapper" style="width: 100%; aspect-ratio: 16/9; background-color: #fcf8ec; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #e0d5b5;">
+                        <img src="${imgSrc}" alt="ブログ画像" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i data-lucide="image" style="width: 48px; height: 48px; display: none;"></i>
+                    </div>
+                    <div class="blog-content" style="padding: 16px;">
+                        <div class="blog-date" style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">${dateStr}</div>
+                        <h3 class="blog-title" style="font-size: 1.05rem; color: var(--color-text); margin-bottom: 0; line-height: 1.5; font-weight: 700;">${item.title}</h3>
+                    </div>
+                `;
+                gridEl.appendChild(card);
+            });
+            lucide.createIcons();
+        } else if (data.status === 'ok') {
+            // Keep dummy or show empty state if no items
+            gridEl.innerHTML = `
+                <div class="text-center p-md" style="grid-column: 1 / -1; color: var(--color-text-light);">
+                    現在、新しい記事を準備中です。お楽しみに！
+                </div>
+            `;
+        }
+    } catch (err) {
+        console.error('Failed to fetch Note RSS:', err);
+        // Leave dummy articles on failure
+    }
+}
