@@ -249,8 +249,6 @@ async function fetchNoteArticles() {
         if (!gridEl) return;
         
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-            gridEl.innerHTML = ''; // Clear dummy content
-            
             // Render up to 3 articles
             const items = data.items.slice(0, 3);
             items.forEach(item => {
@@ -281,13 +279,6 @@ async function fetchNoteArticles() {
                 gridEl.appendChild(card);
             });
             lucide.createIcons();
-        } else if (data.status === 'ok') {
-            // Keep dummy or show empty state if no items
-            gridEl.innerHTML = `
-                <div class="text-center p-md" style="grid-column: 1 / -1; color: var(--color-text-light);">
-                    現在、新しい記事を準備中です。お楽しみに！
-                </div>
-            `;
         }
     } catch (err) {
         console.error('Failed to fetch Note RSS:', err);
