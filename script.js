@@ -123,7 +123,7 @@ async function fetchEvents() {
 
 function getEventImage(title) {
     if (title.includes('食堂')) return './images/event_cafeteria.png';
-    if (title.includes('講座') || title.includes('教室')) return './images/thumbnail_lecture_1780984200662.png';
+    if (title.includes('講座') || title.includes('教室')) return './images/event_lecture.png';
     if (title.includes('お話会') || title.includes('おはなし')) return './images/event_talk.png';
     if (title.includes('イベント') || title.includes('祭り') || title.includes('マルシェ') || title.includes('講演') || title.includes('コラボ')) return './images/thumbnail_event_1780984231383.png';
     return './images/thumbnail_other_1780984242886.png'; // その他
