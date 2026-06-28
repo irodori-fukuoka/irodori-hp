@@ -263,17 +263,18 @@ async function fetchNoteArticles() {
                 card.href = item.link;
                 card.target = '_blank';
                 card.rel = 'noopener';
-                card.className = 'blog-card';
-                card.style.cssText = 'display: block; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;';
+                card.className = 'event-item';
+                card.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s; display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+                card.onmouseover = function() { this.style.opacity = '0.8'; };
+                card.onmouseout = function() { this.style.opacity = '1'; };
                 
                 card.innerHTML = `
-                    <div class="blog-img-wrapper" style="width: 100%; aspect-ratio: 16/9; background-color: #fcf8ec; overflow: hidden; display: flex; align-items: center; justify-content: center; color: #e0d5b5;">
-                        <img src="${imgSrc}" alt="ブログ画像" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <i data-lucide="image" style="width: 48px; height: 48px; display: none;"></i>
-                    </div>
-                    <div class="blog-content" style="padding: 16px;">
-                        <div class="blog-date" style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">${dateStr}</div>
-                        <h3 class="blog-title" style="font-size: 1.05rem; color: var(--color-text); margin-bottom: 0; line-height: 1.5; font-weight: 700;">${item.title}</h3>
+                    <img src="${imgSrc}" class="event-img" alt="ブログ画像" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="width: 80px; height: 80px; background-color: #fcf8ec; display: none; align-items: center; justify-content: center; border-radius: 8px; color: #e0d5b5; flex-shrink: 0;"><i data-lucide="image" style="width: 24px; height: 24px;"></i></div>
+                    
+                    <div class="event-info">
+                        <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${dateStr} <span style="background-color: #41c9b4; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">note</span></div>
+                        <h3 class="event-title" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0;"><i data-lucide="chevron-right-circle"></i> ${item.title}</h3>
                     </div>
                 `;
                 gridEl.appendChild(card);
