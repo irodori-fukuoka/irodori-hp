@@ -101,6 +101,11 @@ function submitForm(formType) {
 let allEvents = [];
 let currentCalDate = new Date(); // Date used for rendering calendar grid
 
+// イベント詳細へのジャンプURL設定 (日付 YYYYMMDD をキーにする)
+const EVENT_URLS = {
+    '20260710': 'https://www.instagram.com/p/DZo4kK0n00B/?img_index=1',
+};
+
 // Fetch events from Vercel API
 async function fetchEvents() {
     try {
@@ -142,8 +147,18 @@ function renderEventList() {
     }
 
     upcoming.forEach(e => {
-        const item = document.createElement('div');
+        const dateKey = e.start.substring(0, 8);
+        const item = document.createElement(EVENT_URLS[dateKey] ? 'a' : 'div');
         item.className = 'event-item';
+        
+        if (EVENT_URLS[dateKey]) {
+            item.href = EVENT_URLS[dateKey];
+            item.target = '_blank';
+            item.rel = 'noopener';
+            item.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s;';
+            item.onmouseover = function() { this.style.opacity = '0.8'; };
+            item.onmouseout = function() { this.style.opacity = '1'; };
+        }
         
         const imgSrc = getEventImage(e.title);
         
@@ -202,6 +217,11 @@ function renderCalendar() {
         if (dayEvents.length > 0) {
             cell.classList.add('has-event');
             cell.title = dayEvents.map(e => e.title).join('\n');
+            
+            if (EVENT_URLS[dateStr]) {
+                cell.style.cursor = 'pointer';
+                cell.onclick = () => window.open(EVENT_URLS[dateStr], '_blank', 'noopener');
+            }
         }
         
         cellsEl.appendChild(cell);
