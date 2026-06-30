@@ -256,31 +256,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fetch Note Articles
 async function fetchNoteArticles() {
-    const noteId = 'irodori_fukuoka';
-    const rssUrl = `https://note.com/${noteId}/rss`;
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-    
     try {
-        const res = await fetch(apiUrl);
+        const res = await fetch('/api/note');
         if (!res.ok) throw new Error('Note API Error');
         const data = await res.json();
         
         const gridEl = document.getElementById('note-blog-grid');
         if (!gridEl) return;
         
-        if (data.status === 'ok' && data.items && data.items.length > 0) {
+        if (data.data && data.data.contents && data.data.contents.length > 0) {
             // Render up to 3 articles
-            const items = data.items.slice(0, 3);
+            const items = data.data.contents.slice(0, 3);
             items.forEach(item => {
-                // Extract image (Note RSS usually provides thumbnail)
-                let imgSrc = item.thumbnail || 'images/members_cover.png';
+                let imgSrc = item.eyecatch || 'images/members_cover.png';
                 
                 // Format date (YYYY.MM.DD)
-                const d = new Date(item.pubDate);
+                const d = new Date(item.publishAt);
                 const dateStr = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
                 
                 const card = document.createElement('a');
-                card.href = item.link;
+                card.href = item.noteUrl;
                 card.target = '_blank';
                 card.rel = 'noopener';
                 card.className = 'event-item';
@@ -294,7 +289,7 @@ async function fetchNoteArticles() {
                     
                     <div class="event-info">
                         <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${dateStr} <span style="background-color: #41c9b4; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">note</span></div>
-                        <h3 class="event-title" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0;"><i data-lucide="chevron-right-circle"></i> ${item.title}</h3>
+                        <h3 class="event-title" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0;"><i data-lucide="chevron-right-circle"></i> ${item.name}</h3>
                     </div>
                 `;
                 gridEl.appendChild(card);
