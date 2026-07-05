@@ -104,6 +104,7 @@ let currentCalDate = new Date(); // Date used for rendering calendar grid
 // イベント詳細へのジャンプURL設定 (日付 YYYYMMDD をキーにする)
 const EVENT_URLS = {
     '20260710': 'https://www.instagram.com/p/DZo4kK0n00B/?img_index=1',
+    '20260725': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=1',
 };
 
 // Fetch events from Vercel API
@@ -247,6 +248,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('custom-event-list')) {
         fetchEvents();
     }
+    
+    // Auto-hide old manual announcements (older than 7 days)
+    const nowMs = new Date().getTime();
+    document.querySelectorAll('.manual-news-item').forEach(item => {
+        const pubDateStr = item.getAttribute('data-publish-date');
+        if (pubDateStr) {
+            const pubDate = new Date(pubDateStr).getTime();
+            const daysPassed = (nowMs - pubDate) / (1000 * 60 * 60 * 24);
+            if (daysPassed >= 7) {
+                item.style.display = 'none';
+            }
+        }
+    });
     
     // Fetch Note articles
     if (document.getElementById('note-blog-grid')) {
