@@ -105,6 +105,7 @@ let currentCalDate = new Date(); // Date used for rendering calendar grid
 const EVENT_URLS = {
     '20260710': 'https://www.instagram.com/p/DZo4kK0n00B/?img_index=1',
     '20260725': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=1',
+    '20260829': 'https://www.instagram.com/p/DZHSypLH7kU/?img_index=1',
 };
 
 // Fetch events from Vercel API
@@ -123,6 +124,7 @@ async function fetchEvents() {
 }
 
 function getEventImage(title) {
+    if (title.includes('谷口')) return './images/event_taniguchi.png';
     if (title.includes('赤ちゃん食堂')) return './images/event_baby_cafeteria.png';
     if (title.includes('子ども食堂') || title.includes('こども食堂') || title.includes('食堂')) return './images/event_cafeteria.png';
     if (title.includes('講座') || title.includes('教室')) return './images/event_lecture.png';
