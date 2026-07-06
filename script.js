@@ -104,7 +104,8 @@ let currentCalDate = new Date(); // Date used for rendering calendar grid
 // イベント詳細へのジャンプURL設定 (日付 YYYYMMDD をキーにする)
 const EVENT_URLS = {
     '20260710': 'https://www.instagram.com/p/DZo4kK0n00B/?img_index=1',
-    '20260725': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=1',
+    '20260725': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=2',
+    '20260822': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=3',
     '20260829': 'https://www.instagram.com/p/DZHSypLH7kU/?img_index=1',
 };
 
@@ -125,11 +126,12 @@ async function fetchEvents() {
 
 function getEventImage(title) {
     if (title.includes('谷口')) return './images/event_taniguchi.png';
+    if (title.includes('祭り')) return './images/event_summer_festival.png';
     if (title.includes('赤ちゃん食堂')) return './images/event_baby_cafeteria.png';
     if (title.includes('子ども食堂') || title.includes('こども食堂') || title.includes('食堂')) return './images/event_cafeteria.png';
     if (title.includes('講座') || title.includes('教室')) return './images/event_lecture.png';
     if (title.includes('お話会') || title.includes('おはなし')) return './images/event_talk.png';
-    if (title.includes('イベント') || title.includes('祭り') || title.includes('マルシェ') || title.includes('講演') || title.includes('コラボ')) return './images/thumbnail_event_1780984231383.png';
+    if (title.includes('イベント') || title.includes('マルシェ') || title.includes('講演') || title.includes('コラボ')) return './images/thumbnail_event_1780984231383.png';
     return './images/thumbnail_other_1780984242886.png'; // その他
 }
 
