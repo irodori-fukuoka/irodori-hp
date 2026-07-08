@@ -254,19 +254,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchEvents();
     }
     
-    // Auto-hide old manual announcements (older than 7 days)
-    const nowMs = new Date().getTime();
-    document.querySelectorAll('.manual-news-item').forEach(item => {
-        const pubDateStr = item.getAttribute('data-publish-date');
-        if (pubDateStr) {
-            const pubDate = new Date(pubDateStr).getTime();
-            const daysPassed = (nowMs - pubDate) / (1000 * 60 * 60 * 24);
-            if (daysPassed >= 7) {
-                item.style.display = 'none';
-            }
-        }
-    });
-    
     // Fetch Note articles
     if (document.getElementById('note-blog-grid')) {
         fetchNoteArticles();
@@ -283,38 +270,74 @@ async function fetchNoteArticles() {
         const gridEl = document.getElementById('note-blog-grid');
         if (!gridEl) return;
         
+        let allItems = [];
+        const nowMs = new Date().getTime();
+        
+        // 1. Collect manual announcements
+        document.querySelectorAll('.manual-news-item').forEach(item => {
+            const pubDateStr = item.getAttribute('data-publish-date');
+            if (pubDateStr) {
+                const pubDate = new Date(pubDateStr).getTime();
+                const daysPassed = (nowMs - pubDate) / (1000 * 60 * 60 * 24);
+                if (daysPassed < 7) {
+                    item.style.display = 'flex'; // Ensure it's visible if it was hidden
+                    allItems.push({
+                        element: item,
+                        pubDate: pubDate
+                    });
+                }
+            }
+        });
+        
+        // 2. Fetch and collect note articles
         if (data.data && data.data.contents && data.data.contents.length > 0) {
-            // Render up to 3 articles
-            const items = data.data.contents.slice(0, 3);
-            items.forEach(item => {
-                let imgSrc = item.eyecatch || 'images/members_cover.png';
-                
-                // Format date (YYYY.MM.DD)
-                const d = new Date(item.publishAt);
-                const dateStr = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
-                
-                const card = document.createElement('a');
-                card.href = item.noteUrl;
-                card.target = '_blank';
-                card.rel = 'noopener';
-                card.className = 'event-item';
-                card.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s; display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
-                card.onmouseover = function() { this.style.opacity = '0.8'; };
-                card.onmouseout = function() { this.style.opacity = '1'; };
-                
-                card.innerHTML = `
-                    <img src="${imgSrc}" class="event-img" alt="ブログ画像" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div style="width: 80px; height: 80px; background-color: #fcf8ec; display: none; align-items: center; justify-content: center; border-radius: 8px; color: #e0d5b5; flex-shrink: 0;"><i data-lucide="image" style="width: 24px; height: 24px;"></i></div>
+            const noteContents = data.data.contents.slice(0, 3);
+            noteContents.forEach(item => {
+                const pubDate = new Date(item.publishAt).getTime();
+                const daysPassed = (nowMs - pubDate) / (1000 * 60 * 60 * 24);
+                if (daysPassed < 7) {
+                    let imgSrc = item.eyecatch || 'images/members_cover.png';
                     
-                    <div class="event-info">
-                        <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${dateStr} <span style="background-color: #41c9b4; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">note</span></div>
-                        <h3 class="event-title" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0;"><i data-lucide="chevron-right-circle"></i> ${item.name}</h3>
-                    </div>
-                `;
-                gridEl.appendChild(card);
+                    const d = new Date(item.publishAt);
+                    const dateStr = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+                    
+                    const card = document.createElement('a');
+                    card.href = item.noteUrl;
+                    card.target = '_blank';
+                    card.rel = 'noopener';
+                    card.className = 'event-item';
+                    card.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s; display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+                    card.onmouseover = function() { this.style.opacity = '0.8'; };
+                    card.onmouseout = function() { this.style.opacity = '1'; };
+                    
+                    card.innerHTML = `
+                        <img src="${imgSrc}" class="event-img" alt="ブログ画像" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="width: 80px; height: 80px; background-color: #fcf8ec; display: none; align-items: center; justify-content: center; border-radius: 8px; color: #e0d5b5; flex-shrink: 0;"><i data-lucide="image" style="width: 24px; height: 24px;"></i></div>
+                        
+                        <div class="event-info">
+                            <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${dateStr} <span style="background-color: #41c9b4; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">note</span></div>
+                            <h3 class="event-title" style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0;"><i data-lucide="chevron-right-circle"></i> ${item.name}</h3>
+                        </div>
+                    `;
+                    
+                    allItems.push({
+                        element: card,
+                        pubDate: pubDate
+                    });
+                }
             });
-            lucide.createIcons();
         }
+        
+        // 3. Sort by date descending (newest first)
+        allItems.sort((a, b) => b.pubDate - a.pubDate);
+        
+        // 4. Clear grid and append sorted items
+        gridEl.innerHTML = '';
+        allItems.forEach(item => {
+            gridEl.appendChild(item.element);
+        });
+        
+        lucide.createIcons();
     } catch (err) {
         console.error('Failed to fetch Note RSS:', err);
         // Leave dummy articles on failure
