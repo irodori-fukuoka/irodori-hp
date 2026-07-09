@@ -66,7 +66,7 @@ module.exports = async (req, res) => {
         month: dateObj ? dateObj.getUTCMonth() + 1 : 0,
         day: dateObj ? dateObj.getUTCDate() : 0
       };
-    }).sort((a, b) => a.timestamp - b.timestamp);
+    }).filter(e => !e.title.includes('オンライン相談のご案内')).sort((a, b) => a.timestamp - b.timestamp);
 
     // 今日以降のイベントのみフィルタリング
     const now = new Date();
