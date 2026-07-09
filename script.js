@@ -2,7 +2,7 @@
 lucide.createIcons();
 
 // Navigation Function (SPA Routing)
-function navigateTo(pageId) {
+function navigateTo(pageId, pushState = true) {
     // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
@@ -32,7 +32,21 @@ function navigateTo(pageId) {
         top: 0,
         behavior: 'smooth'
     });
+    
+    // Update browser history
+    if (pushState) {
+        history.pushState({ pageId: pageId }, '', '#' + pageId);
+    }
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.pageId) {
+        navigateTo(event.state.pageId, false);
+    } else {
+        navigateTo('home', false);
+    }
+});
 
 // Mobile Menu Toggle
 const menuToggle = document.getElementById('menu-toggle');
@@ -316,6 +330,14 @@ function renderCalendar() {
 
 // Navigation Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Initial routing based on URL hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+        navigateTo(hash, false);
+    } else {
+        history.replaceState({ pageId: 'home' }, '', '#home');
+    }
+
     const prevBtn = document.getElementById('cal-prev');
     const nextBtn = document.getElementById('cal-next');
     if (prevBtn) {
