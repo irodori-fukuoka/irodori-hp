@@ -20,6 +20,12 @@ function navigateTo(pageId) {
     if (navMenu.classList.contains('open')) {
         navMenu.classList.remove('open');
     }
+    
+    // Lazy load history events
+    if (pageId === 'history' && !window.historyFetched) {
+        window.historyFetched = true;
+        fetchHistoryEvents();
+    }
 
     // Scroll to top
     window.scrollTo({
@@ -124,6 +130,75 @@ async function fetchEvents() {
         console.error(err);
         document.getElementById('custom-event-list').innerHTML = '<div class="text-center p-md" style="color: #ff7676;">予定の取得に失敗しました。</div>';
     }
+}
+
+// Fetch and render history events
+async function fetchHistoryEvents() {
+    try {
+        const res = await fetch('/api/events?all=true');
+        if (!res.ok) throw new Error('API Error');
+        const data = await res.json();
+        
+        // Filter out future events to only show past events
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = now.getMonth() + 1;
+        const d = now.getDate();
+        const todayStr = y + String(m).padStart(2, '0') + String(d).padStart(2, '0');
+        
+        const pastEvents = data.filter(e => e.start < todayStr);
+        // Sort descending (newest first)
+        pastEvents.sort((a, b) => b.timestamp - a.timestamp);
+        
+        renderHistoryEventList(pastEvents);
+    } catch (err) {
+        console.error(err);
+        document.getElementById('history-event-list').innerHTML = '<div class="text-center p-md" style="color: #ff7676;">過去の活動実績の取得に失敗しました。</div>';
+    }
+}
+
+function renderHistoryEventList(events) {
+    const listEl = document.getElementById('history-event-list');
+    if (!listEl) return;
+    
+    if (events.length === 0) {
+        listEl.innerHTML = '<div class="text-center p-md" style="color: #888;">過去の活動実績はまだありません。</div>';
+        return;
+    }
+    
+    listEl.innerHTML = '';
+    
+    events.forEach(e => {
+        const dateStr = e.start.substring(0,8);
+        const displayDate = `${dateStr.substring(0,4)}.${dateStr.substring(4,6)}.${dateStr.substring(6,8)}`;
+        
+        const item = document.createElement(EVENT_URLS[dateStr] ? 'a' : 'div');
+        item.className = 'event-item';
+        
+        if (EVENT_URLS[dateStr]) {
+            item.href = EVENT_URLS[dateStr];
+            item.target = '_blank';
+            item.rel = 'noopener';
+            item.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s; display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+            item.onmouseover = function() { this.style.opacity = '0.8'; };
+            item.onmouseout = function() { this.style.opacity = '1'; };
+        } else {
+            item.style.cssText = 'display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+        }
+        
+        const imgSrc = getEventImage(e.title);
+        
+        item.innerHTML = `
+            <img src="${imgSrc}" class="event-img" alt="イベント画像" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div class="event-info">
+                <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${displayDate} <span style="background-color: #f6ad55; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">活動実績</span></div>
+                <h3 class="event-title" style="margin-bottom: 0; font-weight: bold; font-size: 1.1rem;">${EVENT_URLS[dateStr] ? '<i data-lucide="chevron-right-circle"></i> ' : ''}${e.title}</h3>
+            </div>
+        `;
+        listEl.appendChild(item);
+    });
+    
+    lucide.createIcons();
 }
 
 function getEventImage(title) {

@@ -75,10 +75,13 @@ module.exports = async (req, res) => {
     
     // カレンダー描画用に少し過去のイベントも返す（今月のカレンダー表示用）
     // とりあえず1ヶ月前からのデータを送る
-    const oneMonthAgo = new Date(Date.UTC(now.getFullYear(), now.getMonth() - 1, 1)).getTime();
-    const upcomingEvents = processedEvents.filter(e => e.timestamp >= oneMonthAgo);
+    let resultEvents = processedEvents;
+    if (req.query.all !== 'true') {
+      const oneMonthAgo = new Date(Date.UTC(now.getFullYear(), now.getMonth() - 1, 1)).getTime();
+      resultEvents = processedEvents.filter(e => e.timestamp >= oneMonthAgo);
+    }
 
-    res.status(200).json(upcomingEvents);
+    res.status(200).json(resultEvents);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
