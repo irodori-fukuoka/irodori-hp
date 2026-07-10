@@ -2,7 +2,7 @@
 lucide.createIcons();
 
 // Navigation Function (SPA Routing)
-function navigateTo(pageId, pushState = true) {
+function navigateTo(pageId, pushState = true, targetSectionId = null) {
     // Hide all pages
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => {
@@ -27,22 +27,35 @@ function navigateTo(pageId, pushState = true) {
         fetchHistoryEvents();
     }
 
-    // Scroll to top
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    // Scroll handling
+    if (targetSectionId) {
+        // slight delay to ensure rendering is complete before scrolling
+        setTimeout(() => {
+            const el = document.getElementById(targetSectionId);
+            if (el) {
+                // Adjust for fixed header height (approx 80px)
+                const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }, 100);
+    } else {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
     
     // Update browser history
     if (pushState) {
-        history.pushState({ pageId: pageId }, '', '#' + pageId);
+        const hashToPush = targetSectionId ? '#' + targetSectionId : '#' + pageId;
+        history.pushState({ pageId: pageId, targetSectionId: targetSectionId }, '', hashToPush);
     }
 }
 
 // Handle browser back/forward buttons
 window.addEventListener('popstate', (event) => {
     if (event.state && event.state.pageId) {
-        navigateTo(event.state.pageId, false);
+        navigateTo(event.state.pageId, false, event.state.targetSectionId);
     } else {
         navigateTo('home', false);
     }
@@ -332,10 +345,17 @@ function renderCalendar() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initial routing based on URL hash
     const hash = window.location.hash.replace('#', '');
-    if (hash && document.getElementById('page-' + hash)) {
+    
+    if (hash === 'events') {
+        navigateTo('home', false, 'events');
+        history.replaceState({ pageId: 'home', targetSectionId: 'events' }, '', '#events');
+    } else if (hash && document.getElementById('page-' + hash)) {
         navigateTo(hash, false);
+        history.replaceState({ pageId: hash, targetSectionId: null }, '', '#' + hash);
     } else {
-        history.replaceState({ pageId: 'home' }, '', '#home');
+        history.replaceState({ pageId: 'home', targetSectionId: null }, '', '#home');
+        // Ensure home is visible
+        navigateTo('home', false);
     }
 
     const prevBtn = document.getElementById('cal-prev');
