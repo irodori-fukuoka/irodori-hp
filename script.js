@@ -139,7 +139,7 @@ const EVENT_URLS = {
     '20260620': 'https://www.instagram.com/p/DZ3dA2YEkEB/?img_index=1',
     '20260624': 'https://www.instagram.com/p/DYvfMMhn3WR/?img_index=1',
     '20260710': 'https://www.instagram.com/p/DZo4kK0n00B/?img_index=1',
-    '20260718': 'https://riverwalk.co.jp/event/challengeshop/',
+    '20260718': 'https://www.instagram.com/p/DaopybPn_oX/?img_index=1',
     '20260725': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=2',
     '20260730': 'https://www.instagram.com/p/Dad6660Ekww/?img_index=1',
     '20260822': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=3',
