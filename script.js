@@ -144,6 +144,7 @@ const EVENT_URLS = {
     '20260730': 'https://www.instagram.com/p/Dad6660Ekww/?img_index=1',
     '20260822': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=3',
     '20260829': 'https://www.instagram.com/p/DZHSypLH7kU/?img_index=1',
+    '20260908': 'https://www.instagram.com/p/DbPZ-TAn_h6/?img_index=1',
 };
 
 // Fetch events from Vercel API
