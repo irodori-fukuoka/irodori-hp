@@ -219,7 +219,7 @@
             </div>
 
             <!-- irodoriについて -->
-            <div class="container section">
+            <div class="container section" id="about-section">
                 <h2 class="section-title text-center">irodoriについて</h2>
                 <div class="about-box mb-lg">
                     <h3>私たちの想い</h3>
@@ -637,6 +637,49 @@
                 <a href="javascript:void(0)" onclick="navigateTo('home')" class="btn btn-primary">トップページへ戻る</a>
             </div>
         </section>
+
+        <!-- ページ: プライバシーポリシー -->
+        <section id="page-privacy" class="page container section mt-xl mb-xl">
+            <h2 class="section-title text-center mb-lg">プライバシーポリシー</h2>
+            <div style="max-width: 760px; margin: 0 auto; line-height: 1.9;">
+                <p class="mb-lg">irodori（以下「当団体」といいます）は、当ウェブサイト（以下「当サイト」といいます）をご利用いただく皆さまの個人情報を大切に考え、以下の方針に基づき適切に取り扱います。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">1. 基本方針</h3>
+                <p class="mb-lg">当団体は、個人情報保護の重要性を認識し、関連する法令等を遵守するとともに、適切な個人情報の取得・利用・管理に努めます。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">2. 取得する情報と利用目的</h3>
+                <p class="mb-md">当サイトの「お問い合わせ」「メンバー募集」フォームでは、ご相談やお問い合わせ、応募への対応のため、以下の情報をご入力いただいております。</p>
+                <ul class="mb-lg" style="padding-left: 1.5em;">
+                    <li>お名前</li>
+                    <li>メールアドレス</li>
+                    <li>お問い合わせ・応募内容</li>
+                </ul>
+                <p class="mb-lg">これらの情報は、ご相談・お問い合わせへの回答、メンバー募集に関するご連絡など、いただいたご依頼に対応する目的以外には利用しません。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">3. 外部サービスの利用について</h3>
+                <p class="mb-lg">当サイトのフォーム送信には、外部のフォーム処理サービス「Web3Forms」を利用しています。フォームにご入力いただいた内容は、同サービスを経由して当団体のメールアドレスに送信されます。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">4. 第三者提供について</h3>
+                <p class="mb-lg">当団体は、法令に基づく場合を除き、ご本人の同意なく取得した個人情報を第三者に提供することはありません。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">5. Cookie（クッキー）等について</h3>
+                <p class="mb-lg">当サイトでは、現在アクセス解析等を目的としたCookieの使用は行っておりません。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">6. 個人情報の開示・訂正・削除等について</h3>
+                <p class="mb-lg">ご本人からご自身の個人情報について開示・訂正・削除等のご請求があった場合は、ご本人であることを確認のうえ、速やかに対応いたします。下記のお問い合わせ窓口までご連絡ください。</p>
+
+                <h3 class="subsection-title mb-sm mt-lg">7. お問い合わせ窓口</h3>
+                <p class="mb-lg">個人情報の取り扱いに関するお問い合わせは、下記までご連絡ください。<br>irodori　Email: <a href="mailto:irodori.hokenshitsu@gmail.com">irodori.hokenshitsu@gmail.com</a></p>
+
+                <h3 class="subsection-title mb-sm mt-lg">8. 本ポリシーの改定について</h3>
+                <p class="mb-lg">当団体は、必要に応じて本ポリシーの内容を予告なく変更することがあります。変更後のポリシーは、当サイトに掲載した時点から効力を生じるものとします。</p>
+
+                <p class="text-center" style="opacity: 0.7; font-size: 0.9rem;">制定日：2026年8月7日</p>
+            </div>
+            <div class="text-center mt-xl">
+                <a href="javascript:void(0)" onclick="navigateTo('home')" class="btn btn-primary">トップページへ戻る</a>
+            </div>
+        </section>
     </main>
 
     <!-- 共通アクション導線 -->
@@ -673,6 +716,11 @@
                 <span style="color: white; font-weight: bold; font-size: 1.2rem;">irodori</span>
             </div>
             <p class="footer-desc mt-sm">ママと子どもの保健室</p>
+            <nav class="footer-links mt-md">
+                <a href="javascript:void(0)" onclick="navigateTo('home', true, 'about-section')">irodoriについて</a>
+                <span class="footer-links-divider">|</span>
+                <a href="javascript:void(0)" onclick="navigateTo('privacy')">プライバシーポリシー</a>
+            </nav>
             <p class="copyright mt-lg">&copy; 2026 irodori All Rights Reserved.</p>
         </div>
     </footer>
