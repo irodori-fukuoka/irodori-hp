@@ -145,6 +145,10 @@ const EVENT_URLS = {
     '20260822': 'https://www.instagram.com/p/DaVPnE2EliT/?img_index=3',
     '20260829': 'https://www.instagram.com/p/DZHSypLH7kU/?img_index=1',
     '20260908': 'https://www.instagram.com/p/DbPZ-TAn_h6/?img_index=1',
+    '20260912': 'https://riverwalk.co.jp/event/challengeshop/',
+    '20260924': 'https://www.instagram.com/p/DcxV1dBzpqu/',
+    '20260925': 'https://www.instagram.com/p/DczohZmH9Kj/?img_index=1',
+    '20261001': 'https://www.instagram.com/p/Dc2Y6_XH4tL/?img_index=1',
 };
 
 // Fetch events from Vercel API
@@ -232,6 +236,7 @@ function renderHistoryEventList(events) {
 }
 
 function getEventImage(title) {
+    if (title.includes('ハイハイ') || title.includes('性教育')) return './images/event_seikyoiku_haihai.png';
     if (title.includes('スクイーズ') || title.includes('キーホルダー')) return './images/event_riverwalk.png';
     if (title.includes('谷口')) return './images/event_taniguchi.png';
     if (title.includes('祭り')) return './images/event_summer_festival.png';
