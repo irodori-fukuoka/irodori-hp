@@ -239,7 +239,7 @@ function renderHistoryEventList(events) {
 function getEventImage(title) {
     if (title.includes('ハイハイ') || title.includes('性教育')) return './images/event_seikyoiku_haihai.png';
     if (title.includes('スクイーズ') || title.includes('キーホルダー')) return './images/event_riverwalk.png';
-    if (title.includes('谷口')) return './images/event_taniguchi.png';
+    if (title.includes('谷口')) return './images/event_taniguchi_lecture2.png';
     if (title.includes('祭り')) return './images/event_summer_festival.png';
     if (title.includes('赤ちゃん食堂')) return './images/event_baby_cafeteria.png';
     if (title.includes('子ども食堂') || title.includes('こども食堂') || title.includes('食堂')) return './images/event_cafeteria.png';
