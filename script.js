@@ -149,6 +149,7 @@ const EVENT_URLS = {
     '20260924': 'https://www.instagram.com/p/DcxV1dBzpqu/',
     '20260925': 'https://www.instagram.com/p/DczohZmH9Kj/?img_index=1',
     '20261001': 'https://www.instagram.com/p/Dc2Y6_XH4tL/?img_index=1',
+    '20261005': 'https://www.instagram.com/irodori.fukuoka/p/Dc8kU6lnxqp/',
 };
 
 // Fetch events from Vercel API
