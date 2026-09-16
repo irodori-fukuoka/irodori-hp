@@ -150,6 +150,7 @@ const EVENT_URLS = {
     '20260925': 'https://www.instagram.com/p/DczohZmH9Kj/?img_index=1',
     '20261001': 'https://www.instagram.com/p/Dc2Y6_XH4tL/?img_index=1',
     '20261005': 'https://www.instagram.com/irodori.fukuoka/p/Dc8kU6lnxqp/',
+    '20261015': 'https://www.instagram.com/p/DdU5OF2H15C/?img_index=1',
 };
 
 // Fetch events from Vercel API
@@ -245,6 +246,7 @@ function getEventImage(title) {
     if (title.includes('子ども食堂') || title.includes('こども食堂') || title.includes('食堂')) return './images/event_cafeteria.png';
     if (title.includes('講座') || title.includes('教室')) return './images/event_lecture.png';
     if (title.includes('お話会') || title.includes('おはなし')) return './images/event_talk.png';
+    if (title.includes('ほっとサロン')) return './images/event_hotsalon.png';
     if (title.includes('イベント') || title.includes('マルシェ') || title.includes('講演') || title.includes('コラボ')) return './images/thumbnail_event_1780984231383.png';
     return './images/thumbnail_other_1780984242886.png'; // その他
 }
