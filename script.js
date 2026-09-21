@@ -240,6 +240,7 @@ function renderHistoryEventList(events) {
 
 function getEventImage(title) {
     if (title.includes('ハイハイ') || title.includes('性教育')) return './images/event_seikyoiku_haihai.png';
+    if (title.includes('分子栄養学')) return './images/event_molecular_nutrition.png';
     if (title.includes('スクイーズ') || title.includes('キーホルダー')) return './images/event_riverwalk.png';
     if (title.includes('谷口')) return './images/event_taniguchi_lecture2.png';
     if (title.includes('祭り')) return './images/event_summer_festival.png';
