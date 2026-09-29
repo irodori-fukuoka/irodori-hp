@@ -152,6 +152,7 @@ const EVENT_URLS = {
     '20261005': 'https://www.instagram.com/irodori.fukuoka/p/Dc8kU6lnxqp/',
     '20261015': 'https://www.instagram.com/p/DdU5OF2H15C/?img_index=1',
     '20261029': 'https://www.instagram.com/p/Ddd-zaaH2Bp/?img_index=1',
+    '20261009': 'https://www.instagram.com/p/Dd1LajqnytH/?img_index=1',
 };
 
 // Fetch events from Vercel API
@@ -241,7 +242,7 @@ function renderHistoryEventList(events) {
 function getEventImage(title) {
     if (title.includes('ハイハイ') || title.includes('性教育')) return './images/event_seikyoiku_haihai.png';
     if (title.includes('分子栄養学')) return './images/event_molecular_nutrition.png';
-    if (title.includes('スクイーズ') || title.includes('キーホルダー')) return './images/event_riverwalk.png';
+    if (title.includes('スクイーズ') || title.includes('キーホルダー') || title.includes('リバーウォーク')) return './images/event_riverwalk.png';
     if (title.includes('谷口')) return './images/event_taniguchi_lecture2.png';
     if (title.includes('祭り')) return './images/event_summer_festival.png';
     if (title.includes('赤ちゃん食堂')) return './images/event_baby_cafeteria.png';
