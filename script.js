@@ -154,6 +154,7 @@ const EVENT_URLS = {
     '20261029': 'https://www.instagram.com/p/Ddd-zaaH2Bp/?img_index=1',
     '20261009': 'https://www.instagram.com/p/Dd1LajqnytH/?img_index=1',
     '20261024': 'https://www.instagram.com/p/Dd8HK8Mn-Yq/?img_index=1',
+    '20261101': 'https://www.instagram.com/p/Des0Tc_Els5/?img_index=1',
     '20261111': 'https://www.instagram.com/p/DeoNI8eEl3P/?img_index=1',
     '20261107':'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
     '20261122': 'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
