@@ -155,12 +155,23 @@ const EVENT_URLS = {
     '20261009': 'https://www.instagram.com/p/Dd1LajqnytH/?img_index=1',
     '20261024': 'https://www.instagram.com/p/Dd8HK8Mn-Yq/?img_index=1',
     '20261101': 'https://www.instagram.com/p/Des0Tc_Els5/?img_index=1',
-    '20261111': 'https://www.instagram.com/p/DeoNI8eEl3P/?img_index=1',
+    '20261111': {
+        '赤ちゃん食堂': 'https://www.instagram.com/p/DeoNI8eEl3P/?img_index=1',
+        '子ども食堂': 'https://www.instagram.com/p/DfHyxrrHzdM/?img_index=1',
+    },
     '20261107':'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
     '20261122': 'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
     '20261126': 'https://www.instagram.com/p/DfBauwJH49U/?img_index=1',
     '20261206': 'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
 };
+
+// 同じ日に複数の予定がある場合は { '予定名のキーワード': URL } で振り分ける
+function getEventUrl(dateStr, title) {
+    const v = EVENT_URLS[dateStr];
+    if (!v || typeof v === 'string') return v;
+    const key = Object.keys(v).find(k => title.includes(k));
+    return key ? v[key] : undefined;
+}
 
 // Fetch events from Vercel API
 async function fetchEvents() {
@@ -217,11 +228,12 @@ function renderHistoryEventList(events) {
         const dateStr = e.start.substring(0,8);
         const displayDate = `${dateStr.substring(0,4)}.${dateStr.substring(4,6)}.${dateStr.substring(6,8)}`;
         
-        const item = document.createElement(EVENT_URLS[dateStr] ? 'a' : 'div');
+        const eventUrl = getEventUrl(dateStr, e.title);
+        const item = document.createElement(eventUrl ? 'a' : 'div');
         item.className = 'event-item';
-        
-        if (EVENT_URLS[dateStr]) {
-            item.href = EVENT_URLS[dateStr];
+
+        if (eventUrl) {
+            item.href = eventUrl;
             item.target = '_blank';
             item.rel = 'noopener';
             item.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s; display: flex; align-items: center; gap: 16px; background: white; padding: 12px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
@@ -237,7 +249,7 @@ function renderHistoryEventList(events) {
             <img src="${imgSrc}" class="event-img" alt="イベント画像" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
             <div class="event-info">
                 <div class="event-date" style="font-size: 0.85rem; color: #888; margin-bottom: 4px;">${displayDate} <span style="background-color: #f6ad55; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-left: 8px;">活動実績</span></div>
-                <h3 class="event-title" style="margin-bottom: 0; font-weight: bold; font-size: 1.1rem;">${EVENT_URLS[dateStr] ? '<i data-lucide="chevron-right-circle"></i> ' : ''}${e.title}</h3>
+                <h3 class="event-title" style="margin-bottom: 0; font-weight: bold; font-size: 1.1rem;">${eventUrl ? '<i data-lucide="chevron-right-circle"></i> ' : ''}${e.title}</h3>
             </div>
         `;
         listEl.appendChild(item);
@@ -280,11 +292,12 @@ function renderEventList() {
 
     upcoming.forEach(e => {
         const dateKey = e.start.substring(0, 8);
-        const item = document.createElement(EVENT_URLS[dateKey] ? 'a' : 'div');
+        const eventUrl = getEventUrl(dateKey, e.title);
+        const item = document.createElement(eventUrl ? 'a' : 'div');
         item.className = 'event-item';
-        
-        if (EVENT_URLS[dateKey]) {
-            item.href = EVENT_URLS[dateKey];
+
+        if (eventUrl) {
+            item.href = eventUrl;
             item.target = '_blank';
             item.rel = 'noopener';
             item.style.cssText = 'text-decoration: none; color: inherit; transition: opacity 0.2s;';
@@ -350,9 +363,10 @@ function renderCalendar() {
             cell.classList.add('has-event');
             cell.title = dayEvents.map(e => e.title).join('\n');
             
-            if (EVENT_URLS[dateStr]) {
+            const cellUrl = dayEvents.map(e => getEventUrl(dateStr, e.title)).find(Boolean);
+            if (cellUrl) {
                 cell.style.cursor = 'pointer';
-                cell.onclick = () => window.open(EVENT_URLS[dateStr], '_blank', 'noopener');
+                cell.onclick = () => window.open(cellUrl, '_blank', 'noopener');
             }
         }
         
