@@ -162,6 +162,7 @@ const EVENT_URLS = {
     '20261107':'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
     '20261122': 'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
     '20261126': 'https://www.instagram.com/p/DfBauwJH49U/?img_index=1',
+    '20261129': 'https://www.instagram.com/p/Defr0qoH-jz/?img_index=1',
     '20261206': 'https://www.instagram.com/p/DeQGWIXH6hV/?img_index=1',
 };
 
